@@ -19,4 +19,3 @@ Choose `1` to encrypt or `2` to decrypt, then enter your message and a nonnegati
 ## Files
 
 - `caesarcipher.py` — interactive encryption and decryption program.
-- `*.docx` — assignment documents and reflection.
