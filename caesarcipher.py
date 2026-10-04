@@ -1,7 +1,17 @@
+def get_valid_text(prompt):
+    # keep prompting user until they enter only english letters and spaces
+    while True:
+        text = input(prompt)
+        # we need at least one letter and every character must be an english letter or space
+        if text.strip() and all("a" <= char <= "z" or "A" <= char <= "Z" or char == " " for char in text):
+            return text
+        print("Please enter only text (English letters and spaces, with at least one letter).")
+
+
 def caesar_encryption():    
     # Defining Variables 
     # prompting user for the plaintext they want to encrypt
-    plain_text = input("Enter your plain message: ")
+    plain_text = get_valid_text("Enter your plain message: ")
     # prompting user for the number of shifts they want to encrypt their message with
     shift_amount =  int(input("Enter your desired shift amount: "))
 
@@ -38,7 +48,7 @@ def caesar_decryption():
 
     # Defining Variables
     # prompting user for the encrypted text they want to decrypt
-    encrypted_text = input("Enter you encrypted message: ")
+    encrypted_text = get_valid_text("Enter your encrypted message: ")
 
     # prompting user for the number of shifts used to encrypt their message
     shift_amount = int(input("Enter the key if you know it: "))
