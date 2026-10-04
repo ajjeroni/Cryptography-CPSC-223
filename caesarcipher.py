@@ -1,7 +1,7 @@
 def caesar_encryption():    
     # Defining Variables 
     # prompting user for the plaintext they want to encrypt
-    plain_text = input("Enter your secret message: ")
+    plain_text = input("Enter your plain message: ")
     # prompting user for the number of shifts they want to encrypt their message with
     shift_amount =  int(input("Enter your desired shift amount: "))
 
@@ -34,8 +34,41 @@ def caesar_encryption():
 
     print(encryption(plain_text))
 
+def caesar_decryption():
+
+    encrypted_text = input("Enter you encrypted message: ")
+
+    shift_amount = int(input("Enter the key if you know it: "))
+
+    def decryption(text):
+        decrypted_list = []
+
+        for char in text:
+            if char == " ":
+                decrypted_list.append(" ")
+                continue
+
+            if char.isupper():
+                char = char.lower()
+
+            ord_char = ord(char) - 97
+            
+            shift_ord_char = ((ord_char + 26) - shift_amount) % 26
+            shifted_char = chr(shift_ord_char + 97)
+
+            decrypted_list.append(shifted_char)
+
+        return "".join(decrypted_list)
+
+    print(decryption(encrypted_text))
 
 
-
-
-caesar_encryption()
+print("Welcome to the Caesar Cypher")
+print("Choose to Encrypt or Decrypt")
+print("If choosing Encryption, enter 1")
+print("If choosing Decryption, enter 2")
+choice = int(input("->"))
+if choice == 1:
+    caesar_encryption()
+elif choice == 2:
+    caesar_decryption()
