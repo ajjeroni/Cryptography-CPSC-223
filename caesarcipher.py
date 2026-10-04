@@ -36,26 +36,37 @@ def caesar_encryption():
 
 def caesar_decryption():
 
+    # Defining Variables
+    # prompting user for the encrypted text they want to decrypt
     encrypted_text = input("Enter you encrypted message: ")
 
+    # prompting user for the number of shifts used to encrypt their message
     shift_amount = int(input("Enter the key if you know it: "))
 
+    # Decryption method
     def decryption(text):
+        # will store decrypted characters from secret message in a list
         decrypted_list = []
 
+        # for each character in our encrypted text we need to substitute them
         for char in text:
+            # if the string has spaces then we have to remember those spaces
             if char == " ":
                 decrypted_list.append(" ")
                 continue
 
+            # a case we need to check is if a character is uppercase, we need all letter lowercase
             if char.isupper():
                 char = char.lower()
 
+            # we use the unicode of each lowercase letter and bring it to 0-index
             ord_char = ord(char) - 97
             
+            # we subtract our shift amount to shift back to the original letter
             shift_ord_char = ((ord_char + 26) - shift_amount) % 26
             shifted_char = chr(shift_ord_char + 97)
 
+            # append it to our list
             decrypted_list.append(shifted_char)
 
         return "".join(decrypted_list)
