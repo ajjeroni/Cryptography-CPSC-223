@@ -10,17 +10,32 @@ def caesar_encryption():
         # will store encrypted characters from secret message in a list
         encrypted_list = []
 
+        # for each character in our plain text we need to substitute them
         for char in text:
 
+            # if the string has spaces then we have to remember those spaces
+            if char == " ":
+                encrypted_list.append(" ")
+                continue
+
+            # a case we need to check is if a character is uppercase, we need all letter lowercase
             if char.isupper():
                 char = char.lower()
 
+            # we use the unicode of each lowercase letter and bring it to 0-index
+            # we also add our shift amount
             ord_char = ord(char) - 97
-            
-            encrypted_list.append(ord_char)
+            shift_ord_char = (ord_char + shift_amount) % 26 
+            shifted_char = chr(shift_ord_char + 97)
+            # append it to our list
+            encrypted_list.append(shifted_char)
 
-        return encrypted_list
+        return "".join(encrypted_list)
 
     print(encryption(plain_text))
+
+
+
+
 
 caesar_encryption()
