@@ -8,12 +8,24 @@ def get_valid_text(prompt):
         print("Please enter only text (English letters and spaces, with at least one letter).")
 
 
+def get_valid_shift(prompt):
+    # keep prompting user until they enter an integer that is zero or greater
+    while True:
+        try:
+            shift_amount = int(input(prompt))
+            if shift_amount >= 0:
+                return shift_amount
+        except ValueError:
+            pass
+        print("Please enter only a nonnegative integer (0 or greater), with no decimals.")
+
+
 def caesar_encryption():    
     # Defining Variables 
     # prompting user for the plaintext they want to encrypt
     plain_text = get_valid_text("Enter your plain message: ")
     # prompting user for the number of shifts they want to encrypt their message with
-    shift_amount =  int(input("Enter your desired shift amount: "))
+    shift_amount = get_valid_shift("Enter your desired shift amount: ")
 
     # Encryption method
     def encryption(text):
@@ -51,7 +63,7 @@ def caesar_decryption():
     encrypted_text = get_valid_text("Enter your encrypted message: ")
 
     # prompting user for the number of shifts used to encrypt their message
-    shift_amount = int(input("Enter the key if you know it: "))
+    shift_amount = get_valid_shift("Enter the key if you know it: ")
 
     # Decryption method
     def decryption(text):
